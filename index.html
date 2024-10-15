@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="script.js"></script>
+  <title>Calclator</title>
+  <style>
+  body{
+  margin-left:80px;
+  }input{
+  width:50px;
+  margin:40px;
+  }
+
+  input.btn-large{
+    font-size:24px;
+	}
+
+  input#display{
+	width:235px;
+	font-size:28px;
+	}
+  </style>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+  <body style="margin-left:80px">
+    <form name="calculator">
+      <input type="text" name="display" id="display"> 
+      <br>
+      <br>
+        <input type="button" class="btn-large" value="√" onclick="sqrtcal()">
+        <input type="button" class="btn-large" value="³√" onclick="cbrtcal()">
+        <input type="button" class="btn-large" value="^" onclick="addToDisplay('**')">
+        <input type="button" class="btn-large" value="C" onclick="clearDisplay()">
+      <br>
+      <br>
+        <input type="button" class="btn-large" value="7" onclick="addToDisplay('7')">
+        <input type="button" class="btn-large" value="8" onclick="addToDisplay('8')">
+        <input type="button" class="btn-large" value="9" onclick="addToDisplay('9')">
+        <input type="button" class="btn-large" value="/" onclick="addToDisplay('/')">
+      <br>
+      <br>
+        <input type="button" class="btn-large" value="4" onclick="addToDisplay('4')">
+        <input type="button" class="btn-large" value="5" onclick="addToDisplay('5')">
+        <input type="button" class="btn-large" value="6" onclick="addToDisplay('6')">
+        <input type="button" class="btn-large" value="*" onclick="addToDisplay('*')">
+      <br>
+      <br>
+        <input type="button" class="btn-large" value="1" onclick="addToDisplay('1')">
+        <input type="button" class="btn-large" value="2" onclick="addToDisplay('2')">
+        <input type="button" class="btn-large" value="3" onclick="addToDisplay('3')">
+        <input type="button" class="btn-large" value="-" onclick="addToDisplay('-')">
+      <br>
+      <br>
+        <input type="button" class="btn-large" value="0" onclick="addToDisplay('0')">
+        <input type="button" class="btn-large" value="." onclick="addToDisplay('.')">
+        <input type="button" class="btn-large" value="=" onclick="calculate()">
+        <input type="button" class="btn-large" value="+" onclick="addToDisplay('+')">
+    </form>
+    <!-- merrychristmas December,25,2023 2:10:29P.M --> <!-- <---fuk -->
+    <br>
+    <br>
+    <select id="voice-names"></select>
+    <input id="rate" type="range" min="0" max="2" step="0.25" value="1"> (speed)
+  </body>
+</html>
