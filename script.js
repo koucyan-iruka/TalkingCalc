@@ -177,32 +177,31 @@ const operationName = {
         let currentLang = "en";
         let error = 0;
 
-// 音声リストの表示を更新する（音声のロード）
+        //Loading voices then make a list
 function loadVoices() {
     const voiceSelect = document.getElementById("voice-names");
-    voiceSelect.innerHTML = '';  // リストをクリア
+    voiceSelect.innerHTML = '';  
 
     const voices = speechSynthesis.getVoices();
     voices.forEach(voice => {
         const option = document.createElement("option");
         option.value = voice.name;
         option.id = SpeechSynthesisVoice.lang;
-        option.text = `${voice.name} (${voice.lang})`;  // 名前と言語コードを表示
+        option.text = `${voice.name} (${voice.lang})`; 
         voiceSelect.appendChild(option);
     });
 }
 
 function getSelectedVoiceLang() {
-    const selectedVoiceName = document.getElementById("voice-names").value;  // 選択された音声の名前
-    const voices = speechSynthesis.getVoices();  // 音声リストを取得
+    const selectedVoiceName = document.getElementById("voice-names").value; 
+    const voices = speechSynthesis.getVoices(); 
 
-    // 選択された音声を検索し、その音声の言語コード (lang) を取得
     const selectedVoice = voices.find(voice => voice.name === selectedVoiceName);
 
     if (selectedVoice) {
-        return selectedVoice.lang;  // 言語コードを返す
+        return selectedVoice.lang; 
 sz      } else {
-        return null;  // 選択された音声が見つからない場合
+        return null;
     }
 }
 
@@ -223,13 +222,11 @@ function changeLanguage() {
             uttr.voice = speechSynthesis.getVoices().filter(voice => voice.name == selectedVoice)[0];
         }
         
-        uttr.rate = document.getElementById("rate").value; // スピードの調整
+        uttr.rate = document.getElementById("rate").value; 
         speechSynthesis.speak(uttr);
     }
     
     
-    
-    // 表示に値を追加し、演算子もその言語で読み上げる
     function addToDisplay(value) {
         changeLanguage();
         if (error == 1){
@@ -237,20 +234,17 @@ function changeLanguage() {
             error = 0;
         }
         if (operationName[value]) {
-            // 演算子の場合は、言語に応じた読み上げを行う
             speak(operationName[value][currentLang]);
         } else {
-            // 通常の数字や記号はそのまま読み上げ
             speak(value);
         }
         document.calculator.display.value += value;
     }
 
-// クリア機能と読み上げ
 function clearDisplay() {
     speechSynthesis.cancel();
     document.calculator.display.value = '';
-    speak(operationName["C"][currentLang], currentLang); // クリアの読み上げ
+    speak(operationName["C"][currentLang], currentLang);
 }
 
 function gotError() {
@@ -260,31 +254,31 @@ function gotError() {
     speak(operationName["Error"][currentLang], currentLang);
 }
 
-// 計算結果を表示し、読み上げる
+
 function calculate() {
     speak(operationName["="][currentLang], currentLang);
     try {
         const result = eval(document.calculator.display.value);
         document.calculator.display.value = result;
-        speak(result, currentLang);  // 計算結果を読み上げる
+        speak(result, currentLang); 
     } catch (error) {
         gotError();
     }
 }
 
-// 平方根の計算
+// calclation of sqroot
 function sqrtcal() {
     const value = document.calculator.display.value;
     if (value) {
         const result = Math.sqrt(value);
         document.calculator.display.value = result;
-        speak(operationName["√"][currentLang] + " is " + result, currentLang);  // 平方根の結果を読み上げ
+        speak(operationName["√"][currentLang] + " is " + result, currentLang); 
     } else {
         gotError();
     }
 }
 
-// 立方根の計算
+// cbroot
 function cbrtcal() {
     const value = document.calculator.display.value;
     if (value) {
@@ -298,7 +292,6 @@ function cbrtcal() {
 
 
 
-// ページロード時に音声リストを読み込む
 window.speechSynthesis.onvoiceschanged = loadVoices;
 
 //たかが電卓だなんておもってた自分が間違いでした。( ;∀;)
