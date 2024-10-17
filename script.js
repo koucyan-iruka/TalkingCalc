@@ -5,6 +5,59 @@ if (!"speechSynthesis" in window) {
     );
 }
 
+let currentLang = "en";
+let error = 0;
+
+//Loading voices then make a list
+function loadVoices() {
+    const voiceSelect = document.getElementById("voice-names");
+    voiceSelect.innerHTML = '';  
+
+    const voices = speechSynthesis.getVoices();
+    voices.forEach(voice => {
+        const option = document.createElement("option");
+        option.value = voice.name;
+        option.id = SpeechSynthesisVoice.lang;
+        option.text = `${voice.name} (${voice.lang})`; 
+        voiceSelect.appendChild(option);
+    });
+}
+
+function getSelectedVoiceLang() {
+    const selectedVoiceName = document.getElementById("voice-names").value; 
+    const voices = speechSynthesis.getVoices(); 
+
+    const selectedVoice = voices.find(voice => voice.name === selectedVoiceName);
+
+    if (selectedVoice) {
+        return selectedVoice.lang; 
+    } else {
+        return null;
+    }
+}
+
+function changeLanguage() {
+    currentLang = getSelectedVoiceLang().substring(0,2);
+    currentLang = currentLang.toString();
+}
+
+
+function speak(text) {
+    changeLanguage();
+    const uttr = new SpeechSynthesisUtterance(text);
+    uttr.lang = getSelectedVoiceLang();
+    console.log(currentLang);
+
+    const selectedVoice = document.getElementById("voice-names").value;
+    if (selectedVoice) {
+        uttr.voice = speechSynthesis.getVoices().filter(voice => voice.name == selectedVoice)[0];
+    }
+
+    uttr.rate = document.getElementById("rate").value; 
+    speechSynthesis.speak(uttr);
+}
+
+
 //Translations
 
 const operationName = {
@@ -169,63 +222,7 @@ const operationName = {
         "zh": "错误"
     }
 }
-    //もっと良い方法はなかったのだろうか
-    //コードが長くなってるのはおれのせいじゃねーぞ!
-    //ちなみにこうやって日本語でコメント残すとたまに文字化けする
-    //<(｀^´)>
 
-        let currentLang = "en";
-        let error = 0;
-
-        //Loading voices then make a list
-function loadVoices() {
-    const voiceSelect = document.getElementById("voice-names");
-    voiceSelect.innerHTML = '';  
-
-    const voices = speechSynthesis.getVoices();
-    voices.forEach(voice => {
-        const option = document.createElement("option");
-        option.value = voice.name;
-        option.id = SpeechSynthesisVoice.lang;
-        option.text = `${voice.name} (${voice.lang})`; 
-        voiceSelect.appendChild(option);
-    });
-}
-
-function getSelectedVoiceLang() {
-    const selectedVoiceName = document.getElementById("voice-names").value; 
-    const voices = speechSynthesis.getVoices(); 
-
-    const selectedVoice = voices.find(voice => voice.name === selectedVoiceName);
-
-    if (selectedVoice) {
-        return selectedVoice.lang; 
-sz      } else {
-        return null;
-    }
-}
-
-function changeLanguage() {
-    currentLang = getSelectedVoiceLang().substring(0,2);
-    currentLang = currentLang.toString();
-}
-
-
-    function speak(text) {
-        changeLanguage();
-        const uttr = new SpeechSynthesisUtterance(text);
-            uttr.lang = getSelectedVoiceLang();
-            console.log(currentLang);
-
-        const selectedVoice = document.getElementById("voice-names").value;
-        if (selectedVoice) {
-            uttr.voice = speechSynthesis.getVoices().filter(voice => voice.name == selectedVoice)[0];
-        }
-        
-        uttr.rate = document.getElementById("rate").value; 
-        speechSynthesis.speak(uttr);
-    }
-    
     
     function addToDisplay(value) {
         changeLanguage();
@@ -284,7 +281,7 @@ function cbrtcal() {
     if (value) {
         const result = Math.cbrt(value);
         document.calculator.display.value = result;
-        speak(operationName["³√"][currentLang] + " is " + result, currentLang);  // 立方根の結果を読み上げ
+        speak(operationName["³√"][currentLang] + " is " + result, currentLang); 
     } else {
         gotError();
     }
@@ -293,8 +290,3 @@ function cbrtcal() {
 
 
 window.speechSynthesis.onvoiceschanged = loadVoices;
-
-//たかが電卓だなんておもってた自分が間違いでした。( ;∀;)
-//電卓作るのにまさか8時間もかかるとは
-//もうねむいよ... でもまだデバッグおわらねー あーくそ @10/16/2024 11:23PM
-//おわったぞーー！！！ よくがんばったぞおれ！ えらいえらい！ おやすみ。 @10/17/2024 12:16AM
