@@ -4,7 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calclator</title>
-
+    <label hidden>しゃべる電卓です。多言語対応</label>
+    <script>
+        function adjustStyleSheet() {
+            if (window.innerWidth <= 500) {
+                document.querySelector('link[href="style.css"]').setAttribute('href', 'style-phone.css');
+            }else if (window.innerWidth >= 500 && window.innerWidth <= 1270){
+                document.querySelector('link[href="style.css"]').setAttribute('href', 'style-tab.css');
+            }
+        }
+        window.addEventListener('resize', adjustStyleSheet);
+        window.addEventListener('DOMContentLoaded', adjustStyleSheet);
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -24,13 +35,13 @@
             <input type="button" class="btn-large" value="7" onclick="addToDisplay('7')">
             <input type="button" class="btn-large" value="8" onclick="addToDisplay('8')">
             <input type="button" class="btn-large" value="9" onclick="addToDisplay('9')">
-            <input type="button" class="btn-large" value="/" onclick="addToDisplay('/')">
+            <input type="button" class="btn-large" value="÷" onclick="addToDisplay('/')">
                 <br>
                 <br>
             <input type="button" class="btn-large" value="4" onclick="addToDisplay('4')">
             <input type="button" class="btn-large" value="5" onclick="addToDisplay('5')">
             <input type="button" class="btn-large" value="6" onclick="addToDisplay('6')">
-            <input type="button" class="btn-large" value="*" onclick="addToDisplay('*')">
+            <input type="button" class="btn-large" value="×" onclick="addToDisplay('*')">
                 <br>
                 <br>
             <input type="button" class="btn-large" value="1" onclick="addToDisplay('1')">
@@ -51,32 +62,13 @@
     <div class="lang-select">
         <label>音声 / (言語)</label>
         <select id="voice-names" class="browser-default"></select>
-        <select id="voice-lang" class="browser-default" disabled hidden>
-            <option id="en-US">English US</option>
-            <option>English UK</option>
-            <option>Deutsch</option>
-            <option>Español</option>
-            <option>Français</option>
-            <option>हिन्दी</option>
-            <option>Bahasa Indonesia</option>
-            <option>Italiano</option>
-            <option>日本語</option>
-            <option>한국어</option>
-            <option>Nederlands</option>
-            <option>Polski</option>
-            <option>Português</option>
-            <option>Русский</option>
-            <option>汉语 普通话</option>
-            <option>香港 粤語</option>
-            <option>臺灣 國語</option>
-        </select>
     </div>
     <br>
     <div class="speech-rate">
         <label>速度</label><input id="rate" type="range" min="0.5" max="2" step="0.1" value="1" class="range">
     </div>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>
