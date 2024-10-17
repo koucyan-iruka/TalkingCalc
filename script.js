@@ -230,6 +230,13 @@ const operationName = {
             document.calculator.display.value = '';
             error = 0;
         }
+        if (value = "×"){
+            value = "*";
+        }else if (value = "÷"){
+            value = "/";
+        }else if (value = "^"){
+            value = "**";
+        }
         if (operationName[value]) {
             speak(operationName[value][currentLang]);
         } else {
