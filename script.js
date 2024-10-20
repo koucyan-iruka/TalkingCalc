@@ -143,7 +143,7 @@ function cbrtcal() {
 
 
 window.speechSynthesis.onvoiceschanged = loadVoices;
-
+document.addEventListener('DOMContentLoaded', loadVoices());
 
 
 //Translations

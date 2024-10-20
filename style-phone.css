@@ -8,38 +8,73 @@ body{
     justify-content: center;
     height: 100vh;
     flex-direction: column;
-    margin: auto;
+    overflow-x: hidden;
+    margin-top: 50px;
 }
 
 input{
     width: 100%;
+    align-items: center;
+    align-content: center;
 }
 
 input.btn-large{
     font-size:  24px;
     font-family: sans-serif;
-    margin: 5px;
-    width : 50px;
-    height: 50px;
+    margin: 8px;
+    width : 18vw;
+    height: 18vw;
     border-radius: 50%;
+    background-color: white;
 }
 
-input#display{
+input.btn-op{
+    font-size:  24px;
+    font-family: sans-serif;
+    margin: 8px;
+    width : 18vw;
+    height: 18vw;
+    border-radius: 50%;
+    background-color:#dfdfdf;
+}
+
+input.btn-eq{
+    font-size:  24px;
+    font-family: sans-serif;
+    margin: 8px;
+    width : 18vw;
+    height: 18vw;
+    border-radius: 50%;
+    background-color: lightgreen;
+}
+
+input.btn-cl{
+    font-size:  24px;
+    font-family: sans-serif;
+    margin: 8px;
+    width : 18vw;
+    height: 18vw;
+    border-radius: 50%;
+    background-color: lightcoral;
+}
+
+.disp{
     font-family: serif;
-    width: 100%;
-    font-size:24px;
+    width: 90vw;
+    align-self: center;
+    font-size: 32px;
     text-align: right;
-    color: black;
     border-radius: 15px;
     border-color: black;
     background-color: white;
-
+    padding: 3px;
 }
 
-select{
+.lang-select{
     font-size: 18px;
-    width: 80%;
+    width: auto;
     align-items: center;
+    padding: 10px;
 }
 
 input.range{

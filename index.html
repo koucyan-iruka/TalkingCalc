@@ -9,8 +9,8 @@
         function adjustStyleSheet() {
             if (window.innerWidth <= 500) {
                 document.querySelector('link[href="style.css"]').setAttribute('href', 'style-phone.css');
-            }else if (window.innerWidth >= 500 && window.innerWidth <= 1270){
-                document.querySelector('link[href="style.css"]').setAttribute('href', 'style-tab.css');
+            }else if (window.innerWidth >= 600){
+                document.querySelector('link[href="style.css"]').setAttribute('href', 'style.css');
             }
         }
         window.addEventListener('resize', adjustStyleSheet);
@@ -23,37 +23,39 @@
 
     <div class="calculator">
         <form name="calculator">
+            <div class="disp">
             <input type="text" name="display" id="display" disabled style="color: black;" class="disp">
+            </div>
                 <br>
                 <br>
-            <input type="button" class="btn-large" value="√" onclick="sqrtcal()">
-            <input type="button" class="btn-large" value="³√" onclick="cbrtcal()">
-            <input type="button" class="btn-large" value="^" onclick="addToDisplay('**')">
-            <input type="button" class="btn-large" value="C" onclick="clearDisplay()">
+            <input type="button" class="btn-op" value="√" onclick="sqrtcal()">
+            <input type="button" class="btn-op" value="³√" onclick="cbrtcal()">
+            <input type="button" class="btn-op" value="^" onclick="addToDisplay('**')">
+            <input type="button" class="btn-cl" value="C" onclick="clearDisplay()">
                 <br>
                 <br>
             <input type="button" class="btn-large" value="7" onclick="addToDisplay('7')">
             <input type="button" class="btn-large" value="8" onclick="addToDisplay('8')">
             <input type="button" class="btn-large" value="9" onclick="addToDisplay('9')">
-            <input type="button" class="btn-large" value="÷" onclick="addToDisplay('/')">
+            <input type="button" class="btn-op" value="÷" onclick="addToDisplay('/')">
                 <br>
                 <br>
             <input type="button" class="btn-large" value="4" onclick="addToDisplay('4')">
             <input type="button" class="btn-large" value="5" onclick="addToDisplay('5')">
             <input type="button" class="btn-large" value="6" onclick="addToDisplay('6')">
-            <input type="button" class="btn-large" value="×" onclick="addToDisplay('*')">
+            <input type="button" class="btn-op" value="×" onclick="addToDisplay('*')">
                 <br>
                 <br>
             <input type="button" class="btn-large" value="1" onclick="addToDisplay('1')">
             <input type="button" class="btn-large" value="2" onclick="addToDisplay('2')">
             <input type="button" class="btn-large" value="3" onclick="addToDisplay('3')">
-            <input type="button" class="btn-large" value="-" onclick="addToDisplay('-')">
+            <input type="button" class="btn-op" value="-" onclick="addToDisplay('-')">
                 <br>
                 <br>
             <input type="button" class="btn-large" value="0" onclick="addToDisplay('0')">
             <input type="button" class="btn-large" value="." onclick="addToDisplay('.')">
-            <input type="button" class="btn-large" value="=" onclick="calculate()">
-            <input type="button" class="btn-large" value="+" onclick="addToDisplay('+')">
+            <input type="button" class="btn-eq" value="=" onclick="calculate()">
+            <input type="button" class="btn-op" value="+" onclick="addToDisplay('+')">
         </form>
     </div>
         <br>
